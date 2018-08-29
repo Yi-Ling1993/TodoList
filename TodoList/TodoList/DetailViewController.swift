@@ -9,11 +9,17 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    
+    @IBOutlet weak var detailTextView: UITextView!
+    
+    @IBOutlet weak var saveButton: UIButton!
+    var itemDetail: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        detailTextView.text = itemDetail
     }
 
     override func didReceiveMemoryWarning() {

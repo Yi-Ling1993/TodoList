@@ -37,7 +37,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="32B-za-fad">
                             <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="hEj-l4-nFQ" kind="show" id="yMz-5f-0RP"/>
+                                <segue destination="hEj-l4-nFQ" kind="show" identifier="editPage" id="yMz-5f-0RP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -49,7 +49,7 @@
         <!--Detail View Controller-->
         <scene sceneID="mIn-rh-crZ">
             <objects>
-                <viewController id="hEj-l4-nFQ" customClass="DetailViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editPage" id="hEj-l4-nFQ" customClass="DetailViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rNb-JW-iQs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +83,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ckg-dk-ybu"/>
                     </view>
+                    <connections>
+                        <outlet property="detailTextView" destination="6Md-Tt-IXK" id="0kb-Ak-7DH"/>
+                        <outlet property="saveButton" destination="IKe-Vh-a86" id="SR5-Ou-SZJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rbq-Ck-zu1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,6 +9,8 @@
 import UIKit
 
 class TodoListTableViewController: UITableViewController {
+    
+    let item = ["aaa", "bbb", "ccc"]
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +36,32 @@ class TodoListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return item.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath) as? TodoListTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.todoLabel.text = item[indexPath.row]
+        cell.editButton.tag = indexPath.row
+        
+        cell.editButton.addTarget(self, action: #selector(TodoListTableViewController.goEdit(sender:)), for: .touchUpInside)
         
         return cell
 
+    }
+    
+    @objc func goEdit(sender: UIButton) {
+        self.performSegue(withIdentifier: "editPage", sender: sender.tag)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let tag = sender as? Int else {return}
+        let controller = segue.destination as! DetailViewController
+        controller.itemDetail = item[tag]
     }
 
     /*
