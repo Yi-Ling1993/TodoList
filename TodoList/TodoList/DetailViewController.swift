@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol TextSentDelegate {
+    func enterData(data: String)
+}
+
 class DetailViewController: UIViewController {
+    
+    var delegate: TextSentDelegate? = nil
     
     
     @IBOutlet weak var detailTextView: UITextView!
@@ -16,6 +22,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        if delegate != nil {
+            if detailTextView.text != nil {
+                let data = detailTextView.text
+                delegate?.enterData(data: data!)
+                
+                navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     var itemDetail: String?

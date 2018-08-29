@@ -8,9 +8,11 @@
 
 import UIKit
 
-class TodoListTableViewController: UITableViewController {
+class TodoListTableViewController: UITableViewController, TextSentDelegate {
     
-    let item = ["aaa", "bbb", "ccc"]
+    var item = ["aaa", "bbb", "ccc"]
+    
+    var theTag: Int?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,25 @@ class TodoListTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
+    func enterData(data: String) {
+        
+        if let tag = theTag {
+            
+            item[tag] = data
+        } else {
+            item.append(data)
+        }
+        
+       
+        
+
+        
+        tableView.reloadData()
+
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,10 +80,20 @@ class TodoListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let tag = sender as? Int else {return}
         let detailController = segue.destination as! DetailViewController
+        detailController.delegate = self
+        
+        
+        guard let tag = sender as? Int else {return}
+        theTag = tag
         detailController.itemDetail = item[tag]
+
+        
+        
+        
     }
+    
+    
 
     
 
