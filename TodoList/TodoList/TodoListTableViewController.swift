@@ -10,7 +10,9 @@ import UIKit
 
 class TodoListTableViewController: UITableViewController {
     
-    let item = ["aaa", "bbb", "ccc"]
+    var item = ["aaa", "bbb", "ccc"]
+    
+    var theTag: Int?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +61,16 @@ class TodoListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let tag = sender as? Int else {return}
+        
         let detailController = segue.destination as! DetailViewController
-        detailController.itemDetail = item[tag]
+        
+        if let tag = sender as? Int {
+            
+            detailController.itemDetail = item[tag]
+            
+            self.theTag = tag
+            
+        }
         
         detailController.completionHandler = { data in
             
@@ -71,7 +80,16 @@ class TodoListTableViewController: UITableViewController {
     
     func saveData(passData: String) {
         
-        
+        if let tag = theTag {
+            
+            item[tag] = passData
+            
+            theTag = nil
+            
+        } else {
+            
+             item.append(passData)
+        }
         
         tableView.reloadData()
     }
