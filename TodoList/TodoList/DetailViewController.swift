@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
     }
     
-    var itemDetail: String?
+    @objc dynamic var itemDetail: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,6 +10,8 @@ import UIKit
 
 class TodoListTableViewController: UITableViewController {
     
+    var observation: NSKeyValueObservation?
+    
     let item = ["aaa", "bbb", "ccc"]
         
     override func viewDidLoad() {
@@ -62,6 +64,10 @@ class TodoListTableViewController: UITableViewController {
         guard let tag = sender as? Int else {return}
         let detailController = segue.destination as! DetailViewController
         detailController.itemDetail = item[tag]
+        
+        self.observation = detailController.observe(\.itemDetail, options: [.initial, .new]) { (detailController, _) in
+            
+        }
     }
 
     
