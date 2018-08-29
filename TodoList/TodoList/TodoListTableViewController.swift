@@ -31,10 +31,6 @@ class TodoListTableViewController: UITableViewController {
         
     }
     
-    deinit {
-        print("123")
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,12 +66,14 @@ class TodoListTableViewController: UITableViewController {
       
         let detailController = segue.destination as! DetailViewController
        
-        guard let tag = sender as? Int else {return}
+        if let tag = sender as? Int {
+            
+            detailController.itemDetail = item[tag]
 
-        detailController.itemDetail = item[tag]
+            self.theTag = tag
+
+        }
         
-        
-        self.theTag = tag
         
         self.observation = detailController.observe(\.itemDetail, options: [.new]) { (detailController, _) in
             

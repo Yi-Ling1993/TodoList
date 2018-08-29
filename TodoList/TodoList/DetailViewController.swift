@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton!
     
-    @objc dynamic var itemDetail: String? = ""
+    @objc dynamic var itemDetail: String?
 
     @IBAction func saveButtonPressed(_ sender: Any) {
         
