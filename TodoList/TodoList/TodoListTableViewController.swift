@@ -29,6 +29,9 @@ class TodoListTableViewController: UITableViewController, TextSentDelegate {
         if let tag = theTag {
             
             item[tag] = data
+            
+            theTag = nil
+            
         } else {
             item.append(data)
         }
@@ -82,7 +85,6 @@ class TodoListTableViewController: UITableViewController, TextSentDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailController = segue.destination as! DetailViewController
         detailController.delegate = self
-        
         
         guard let tag = sender as? Int else {return}
         theTag = tag
