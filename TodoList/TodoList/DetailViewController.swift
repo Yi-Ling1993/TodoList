@@ -15,6 +15,9 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBAction func saveButtonPressed(_ sender: Any) {
+    }
+    
     var itemDetail: String?
 
     override func viewDidLoad() {
