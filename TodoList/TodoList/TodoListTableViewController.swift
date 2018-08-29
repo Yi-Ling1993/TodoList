@@ -67,9 +67,13 @@ class TodoListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let tag = sender as? Int else {return}
+      
         let detailController = segue.destination as! DetailViewController
+       
+        guard let tag = sender as? Int else {return}
+
         detailController.itemDetail = item[tag]
+        
         
         self.theTag = tag
         
