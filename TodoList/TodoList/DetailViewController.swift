@@ -16,6 +16,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        itemDetail = detailTextView.text
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @objc dynamic var itemDetail: String?

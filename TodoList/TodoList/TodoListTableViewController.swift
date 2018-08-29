@@ -12,8 +12,10 @@ class TodoListTableViewController: UITableViewController {
     
     var observation: NSKeyValueObservation?
     
-    let item = ["aaa", "bbb", "ccc"]
-        
+    var item = ["aaa", "bbb", "ccc"]
+    
+    var theTag: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +30,11 @@ class TodoListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         
     }
-
+    
+    deinit {
+        print("123")
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,8 +71,24 @@ class TodoListTableViewController: UITableViewController {
         let detailController = segue.destination as! DetailViewController
         detailController.itemDetail = item[tag]
         
+        self.theTag = tag
+        
         self.observation = detailController.observe(\.itemDetail, options: [.initial, .new]) { (detailController, _) in
             
+
+            if let tag = self.theTag {
+                
+                self.item[tag] = detailController.itemDetail!
+                
+//                self.theTag = nil
+                
+            } else {
+                
+                self.item.append(detailController.itemDetail!)
+            }
+            
+            self.tableView.reloadData()
+
         }
     }
 
