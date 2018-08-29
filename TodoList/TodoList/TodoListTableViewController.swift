@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListTableViewController: UITableViewController {
     
-    let item = ["aaa", "bbb", "ccc"]
+    var item = ["aaa", "bbb", "ccc"]
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,20 @@ class TodoListTableViewController: UITableViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        let notificationName = Notification.Name("GetUpdateNoti")
+        NotificationCenter.default.addObserver(self, selector: #selector(getUpdateNoti(noti:)), name: notificationName, object: nil)
+    }
+    
+    @objc func getUpdateNoti(noti: Notification) {
+        
+        let data = noti.userInfo?["PASS"]
+        
+        item.append(data as! String)
+        
+        navigationController?.popViewController(animated: true)
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

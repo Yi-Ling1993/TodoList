@@ -16,6 +16,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        let notificationName = Notification.Name("GetUpdateNoti")
+        NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["PASS": detailTextView.text])
+
     }
     
     var itemDetail: String?
@@ -31,7 +35,8 @@ class DetailViewController: UIViewController {
             self.title = "Add"
         }
     }
-
+    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
