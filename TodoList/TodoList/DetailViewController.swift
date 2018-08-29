@@ -10,12 +10,19 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var completionHandler: ((String) -> Void)?
     
     @IBOutlet weak var detailTextView: UITextView!
     
     @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        itemDetail = detailTextView.text
+        
+        completionHandler?(itemDetail ?? "")
+        
+        navigationController?.popViewController(animated: true)
     }
     
     var itemDetail: String?

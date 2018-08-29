@@ -62,6 +62,18 @@ class TodoListTableViewController: UITableViewController {
         guard let tag = sender as? Int else {return}
         let detailController = segue.destination as! DetailViewController
         detailController.itemDetail = item[tag]
+        
+        detailController.completionHandler = { data in
+            
+            self.saveData(passData: data)
+        }
+    }
+    
+    func saveData(passData: String) {
+        
+        
+        
+        tableView.reloadData()
     }
 
     
