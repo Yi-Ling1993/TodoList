@@ -14,12 +14,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTextView: UITextView!
     
     @IBOutlet weak var saveButton: UIButton!
+    
     var itemDetail: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         detailTextView.text = itemDetail
+        
+        if itemDetail != nil {
+            self.title = "Edit"
+        } else {
+            self.title = "Add"
+        }
     }
 
     override func didReceiveMemoryWarning() {
