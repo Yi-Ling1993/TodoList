@@ -11,6 +11,8 @@ import UIKit
 class TodoListTableViewController: UITableViewController {
     
     var item = ["aaa", "bbb", "ccc"]
+    
+    var theTag: Int?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,15 @@ class TodoListTableViewController: UITableViewController {
         
         let data = noti.userInfo?["PASS"]
         
-        item.append(data as! String)
+        if let tag = theTag {
+            
+            item[tag] = data as! String
+            
+            theTag = nil
+            
+        } else {
+            item.append(data as! String)
+        }
         
         navigationController?.popViewController(animated: true)
         
@@ -74,7 +84,9 @@ class TodoListTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let tag = sender as? Int else {return}
+        theTag = tag
         let detailController = segue.destination as! DetailViewController
+        
         detailController.itemDetail = item[tag]
     }
 
