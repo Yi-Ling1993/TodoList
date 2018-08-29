@@ -73,14 +73,14 @@ class TodoListTableViewController: UITableViewController {
         
         self.theTag = tag
         
-        self.observation = detailController.observe(\.itemDetail, options: [.initial, .new]) { (detailController, _) in
+        self.observation = detailController.observe(\.itemDetail, options: [.new]) { (detailController, _) in
             
 
             if let tag = self.theTag {
                 
                 self.item[tag] = detailController.itemDetail!
                 
-//                self.theTag = nil
+                self.theTag = nil
                 
             } else {
                 

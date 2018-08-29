@@ -15,6 +15,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton!
     
+    @objc dynamic var itemDetail: String? = ""
+
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         itemDetail = detailTextView.text
@@ -22,8 +24,6 @@ class DetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc dynamic var itemDetail: String?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
